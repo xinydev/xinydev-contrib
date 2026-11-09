@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Xin Yang (xinydev)'s upstream contributions since 2016: AndroidVideoCache, Celery, Kubernetes, Knative, CloudEvents, SPDK, Linux, jemalloc and PyTorch.">
+<title>Xin Yang Upstream</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: a single reading column (72ch) like a well-set changelog; eras are stacked sections, each era owns one hue on a shared cool-slate ground. */
+:root{
+  --bg:#f3f4f7; --surface:#ffffff; --fg:#161a22; --muted:#5d6472; --line:#d9dce3; --line-soft:#e8eaef;
+  --accent:#b8521a;            /* memory era: copper */
+  --storage:#1f6f8b;           /* storage era: deep teal */
+  --cloud:#4a5fa5;             /* cloud era: indigo */
+  --libraries:#587b46;         /* application libraries: green */
+  --chip:#eceef3;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#12151b; --surface:#191d25; --fg:#e8eaef; --muted:#9aa2b1; --line:#2b313d; --line-soft:#232832;
+  --accent:#e0824a; --storage:#5fb3cf; --cloud:#8d9ee0; --libraries:#91ba77; --chip:#232832; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#12151b; --surface:#191d25; --fg:#e8eaef; --muted:#9aa2b1; --line:#2b313d; --line-soft:#232832;
+  --accent:#e0824a; --storage:#5fb3cf; --cloud:#8d9ee0; --libraries:#91ba77; --chip:#232832; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.55;
+  margin:0;padding:env(safe-area-inset-top,0px) max(16px,env(safe-area-inset-right,0px)) 64px max(16px,env(safe-area-inset-left,0px))}
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+.wrap{max-width:72ch;margin:0 auto}
+h1,h2,h3{text-wrap:balance;margin:0}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* header */
+header{padding-block:56px 32px;border-bottom:1px solid var(--line)}
+header h1{font-size:clamp(30px,5vw,42px);font-weight:600;letter-spacing:-.01em;line-height:1.1}
+header .handle{font-family:var(--mono);font-size:14px;color:var(--muted);margin-top:8px;display:flex;gap:16px;flex-wrap:wrap}
+header .thesis{margin:20px 0 0;font-size:18px;max-width:60ch;color:var(--fg)}
+header .thesis em{font-style:normal;color:var(--accent);font-weight:500}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:0;border-bottom:1px solid var(--line)}
+.stat{padding-block:20px;padding-right:16px;border-right:1px solid var(--line-soft)}
+.stat:last-child{border-right:0}
+.stat .n{font-family:var(--mono);font-size:28px;font-weight:500;line-height:1;font-variant-numeric:tabular-nums}
+.stat .l{font-size:13px;color:var(--muted);margin-top:6px}
+
+/* year chart */
+.years{padding-block:28px 8px}
+.year-chart{overflow-x:auto}
+.years svg{width:100%;height:auto;display:block;max-width:100%}
+.years text{font-family:var(--mono);font-size:11px;fill:var(--muted)}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:8px}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+
+/* eras */
+section.era{padding-block:36px 8px}
+section.era>.head{display:grid;grid-template-columns:1fr auto;gap:8px 16px;align-items:end;border-bottom:2px solid var(--era);padding-bottom:10px}
+section.era h2{font-size:24px;font-weight:600}
+section.era .range{font-family:var(--mono);font-size:13px;color:var(--muted)}
+section.era .blurb{color:var(--muted);margin:10px 0 0;max-width:62ch}
+.era[data-era="memory"]{--era:var(--accent)} .era[data-era="storage"]{--era:var(--storage)} .era[data-era="cloud"]{--era:var(--cloud)} .era[data-era="libraries"]{--era:var(--libraries)}
+
+.project{border-bottom:1px solid var(--line-soft);padding-block:18px}
+.project summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:4px 16px;align-items:baseline}
+.project summary::-webkit-details-marker{display:none}
+.project summary:hover .name{text-decoration:underline;text-underline-offset:3px}
+.project .name{font-size:18px;font-weight:600;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;min-width:0}
+.project .repo{font-family:var(--mono);font-size:13px;color:var(--muted);font-weight:400}
+.project .count{font-family:var(--mono);font-size:14px;color:var(--era);white-space:nowrap;font-variant-numeric:tabular-nums}
+.project .count b{font-size:20px;font-weight:600}
+.project .meta{grid-column:1/-1;font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.project .meta .tog::before{content:"▸ ";}
+.project[open] .meta .tog::before{content:"▾ ";}
+.commits{margin:14px 0 0;padding:0;list-style:none;border-left:2px solid var(--line);}
+.commits li{display:grid;grid-template-columns:5.5em 1fr;gap:12px;padding:5px 0 5px 14px;font-size:14px;min-width:0}
+.commits li:hover{background:var(--surface)}
+.commits .d{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
+.commits .t{min-width:0;overflow-wrap:anywhere}
+.commits .t code{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-left:8px}
+.external{font-size:12px;color:var(--muted);margin-top:10px;font-family:var(--mono)}
+
+/* own */
+.own{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-top:16px}
+.own a{display:block;background:var(--surface);border:1px solid var(--line);padding:14px 16px;min-width:0}
+.own a:hover{border-color:var(--accent);text-decoration:none}
+.own .nm{font-family:var(--mono);font-weight:600;font-size:15px}
+.own .ds{font-size:13px;color:var(--muted);margin:6px 0 10px;line-height:1.45}
+.own .st{font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;gap:12px;font-variant-numeric:tabular-nums}
+
+footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.state{padding-block:40px;color:var(--muted);font-family:var(--mono);font-size:14px}
+@media (max-width:520px){
+  header{padding-block:36px 24px}
+  .stat{padding-right:10px}
+  .commits li{grid-template-columns:1fr}
+  .commits .d{padding-top:0}
+}
+@media (prefers-reduced-motion:no-preference){ .project .meta .tog::before{transition:none} }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Upstream contribution record</div>
+    <h1>Xin Yang</h1>
+    <div class="handle">
+      <a href="https://github.com/xinydev">github.com/xinydev</a>
+    </div>
+    <p class="thesis">Open-source contributions since 2016: from <em>application libraries</em> and <em>cloud-native systems</em> to storage I/O, Arm CPU telemetry, and now <em>memory allocation</em> in jemalloc. Every entry below is an authored commit merged into an upstream project.</p>
+  </header>
+
+  <div id="app"><div class="state">Loading commit data…</div></div>
+
+  <footer>
+    <span>GitHub commit search and verified historical records, one row per merged upstream commit. Canonical repositories only; Arm commits linked from a mirror. <a href="https://github.com/xinydev/xinydev.github.io">Source on GitHub</a>.</span>
+    <span id="gen"></span>
+  </footer>
+</div>
+
+<script src="data.js"></script>
+<script>
+const ERAS = {
+  memory:  { title: "Memory allocation", years: "2025 – now",  blurb: "Core-path fixes in jemalloc (tcache, extents, bitmaps, background threads) and allocator documentation in PyTorch, while at ByteDance." },
+  storage: { title: "Storage & Arm performance", years: "2022 – 2023", blurb: "Lead contributor to SPDK-CSI (snapshots, HA leader election, persistent node state, Arm CI), SPDK SMA fixes, a Linux perf PMU driver patch, and the SPE parser in Arm's Telemetry Solution." },
+  cloud:   { title: "Cloud native", years: "2020 – 2021",  blurb: "Kubernetes and its ecosystem, Knative Serving and Eventing, CloudEvents, and OpenFaaS: multi-container defaults, event delivery, controller tests, CI, and documentation." },
+  libraries: { title: "Application libraries", years: "2016 – 2020", blurb: "A socket lifecycle fix in AndroidVideoCache and reliable task requeueing after Celery worker loss." },
+};
+const ERA_ORDER = ["memory", "storage", "cloud", "libraries"];
+const ERA_VAR = { memory: "var(--accent)", storage: "var(--storage)", cloud: "var(--cloud)", libraries: "var(--libraries)" };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function yearChart(data) {
+  const currentYear = new Date().getFullYear();
+  const firstYear = data.totals.first ? Number(data.totals.first.slice(0, 4)) : currentYear;
+  const lastYear = Math.max(currentYear, ...data.totals.years.map(([y]) => Number(y)));
+  const years = []; for (let y = firstYear; y <= lastYear; y++) years.push(String(y));
+  const per = {}; years.forEach(y => per[y] = Object.fromEntries(ERA_ORDER.map(e => [e, 0])));
+  data.projects.forEach(p => p.commits.forEach(c => { const y = c.date.slice(0, 4); if (per[y]) per[y][p.era]++; }));
+  const max = Math.max(1, ...years.map(y => Object.values(per[y]).reduce((a, b) => a + b, 0)));
+  const W = 640, H = 150, padL = 28, padB = 22, padT = 14, gap = 10;
+  const bw = (W - padL - 8) / years.length - gap, h0 = H - padB;
+  let s = `<svg viewBox="0 0 ${W} ${H}" style="min-width:${years.length * 46 + padL}px" role="img" aria-label="Upstream commits per year">`;
+  [0, max].forEach(v => { const y = h0 - (h0 - padT) * v / max; s += `<line x1="${padL}" x2="${W-4}" y1="${y}" y2="${y}" stroke="var(--line)" stroke-width="1"/><text x="${padL-6}" y="${y+4}" text-anchor="end">${v}</text>`; });
+  years.forEach((y, i) => {
+    const x = padL + i * (bw + gap) + gap / 2; let top = h0;
+    ERA_ORDER.slice().reverse().forEach(e => { const v = per[y][e]; if (!v) return; const hh = (h0 - padT) * v / max; top -= hh; s += `<rect x="${x}" y="${top}" width="${bw}" height="${hh}" fill="${ERA_VAR[e]}"/>`; });
+    const tot = Object.values(per[y]).reduce((a, b) => a + b, 0);
+    if (tot) s += `<text x="${x + bw/2}" y="${top - 4}" text-anchor="middle" style="fill:var(--fg)">${tot}</text>`;
+    s += `<text x="${x + bw/2}" y="${H-6}" text-anchor="middle">${y}</text>`;
+  });
+  return s + "</svg>";
+}
+
+function render(data) {
+  const t = data.totals;
+  const first = t.first ? t.first.slice(0, 4) : "—";
+  const last = data.projects.map(p => p.last).filter(Boolean).sort().pop() || "—";
+  const yearsActive = new Set(data.projects.flatMap(p => p.commits.map(c => c.date.slice(0, 4)))).size;
+  let h = `
+  <div class="stats">
+    <div class="stat"><div class="n">${t.commits}</div><div class="l">upstream commits</div></div>
+    <div class="stat"><div class="n">${t.projects}</div><div class="l">projects</div></div>
+    <div class="stat"><div class="n">${yearsActive}</div><div class="l">active years since ${first}</div></div>
+    <div class="stat"><div class="n" style="font-size:20px;padding-top:4px">${last}</div><div class="l">latest merged commit</div></div>
+  </div>
+  <div class="years"><div class="year-chart">${yearChart(data)}</div>
+    <div class="legend">${ERA_ORDER.map(e => `<span style="--c:${ERA_VAR[e]}">${ERAS[e].title}</span>`).join("")}</div>
+  </div>`;
+
+  ERA_ORDER.forEach(era => {
+    const ps = data.projects.filter(p => p.era === era && p.count > 0).sort((a, b) => b.count - a.count);
+    if (!ps.length) return;
+    const n = ps.reduce((a, p) => a + p.count, 0);
+    h += `<section class="era" data-era="${era}">
+      <div class="head"><h2>${ERAS[era].title}</h2><div class="range">${ERAS[era].years} · ${n} commit${n > 1 ? "s" : ""}</div></div>
+      <p class="blurb">${ERAS[era].blurb}</p>`;
+    ps.forEach(p => {
+      const extern = p.upstream.startsWith("https://github.com/" + p.repo) ? "" :
+        `<div class="external">Canonical home: <a href="${p.upstream}">${p.upstream.replace("https://", "")}</a> (commits linked from the GitHub mirror)</div>`;
+      h += `<details class="project" open>
+        <summary>
+          <div class="name">${esc(p.label)} <span class="repo"><a href="${p.upstream}">${esc(p.repo.replace("xinydev/", "arm/"))}</a></span></div>
+          <div class="count"><b>${p.count}</b> commit${p.count > 1 ? "s" : ""}</div>
+          <div class="meta"><span>${p.first === p.last ? p.first : p.first + " → " + p.last}</span><span>${esc(p.lang)}</span><span class="tog">commit list</span></div>
+        </summary>
+        <ul class="commits">${p.commits.map(c => `<li><span class="d">${c.date}</span><span class="t"><a href="${c.url}">${esc(c.title)}</a><code>${c.sha.slice(0, 7)}</code></span></li>`).join("")}</ul>
+        ${extern}
+      </details>`;
+    });
+    h += `</section>`;
+  });
+
+  document.getElementById("app").innerHTML = h;
+  document.getElementById("gen").textContent = "Data refreshed " + data.generated;
+}
+
+if (window.CONTRIB) { render(window.CONTRIB); }
+else { document.getElementById("app").innerHTML = `<div class="state">data.js not found. Run <code>python3 scripts/collect.py</code> to generate it.</div>`; }
+</script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+[
+ {
+  "repo": "danikula/AndroidVideoCache",
+  "label": "AndroidVideoCache",
+  "era": "libraries",
+  "lang": "Java",
+  "commits": [
+   {
+    "sha": "293d2d4089",
+    "date": "2016-08-29",
+    "title": "fix do not close socket output correctly",
+    "url": "https://github.com/danikula/AndroidVideoCache/commit/293d2d4089028e9156be56f041d126eb618c86d2"
+   }
+  ]
+ },
+ {
+  "repo": "celery/celery",
+  "label": "Celery",
+  "era": "libraries",
+  "lang": "Python",
+  "commits": [
+   {
+    "sha": "976cd8d3e4",
+    "date": "2020-05-16",
+    "title": "Always requeue while worker lost regardless of the redelivered flag (#6103)",
+    "url": "https://github.com/celery/celery/commit/976cd8d3e40eb785423403deb2ce15ea1307579b"
+   }
+  ]
+ },
+ {
+  "repo": "openfaas/faasd",
+  "label": "faasd",
+  "era": "cloud",
+  "lang": "Go",
+  "commits": [
+   {
+    "sha": "d64edeb648",
+    "date": "2020-05-27",
+    "title": "Update OpenFaaS core components for faasd",
+    "url": "https://github.com/openfaas/faasd/commit/d64edeb648c4d6510a55a9e2ae20d497a86d0d4d"
+   }
+  ]
+ },
+ {
+  "repo": "knative/serving",
+  "label": "Knative Serving",
+  "era": "cloud",
+  "lang": "Go",
+  "commits": [
+   {
+    "sha": "e1209e49a0",
+    "date": "2020-08-08",
+    "title": "[multi-container] Enable multi-container flag on by default (#8747)",
+    "url": "https://github.com/knative/serving/commit/e1209e49a03caeb53bf89639cf797c991f36b7c7",
+    "pr": "https://github.com/knative/serving/pull/8747"
+   }
+  ]
+ },
+ {
+  "repo": "knative-extensions/eventing-kafka",
+  "label": "Knative Eventing Kafka",
+  "era": "cloud",
+  "lang": "Go",
+  "commits": [
+   {
+    "sha": "5a79b3b13f",
+    "date": "2021-03-11",
+    "title": "reduce apiserver requests for dispatcher (#456)",
+    "url": "https://github.com/knative-extensions/eventing-kafka/commit/5a79b3b13f13e2cbfdbda87144bf9ed6ed50b4e1"
+   }
+  ]
+ },
+ {
+  "repo": "streamnative/charts",
+  "label": "StreamNative charts",
+  "era": "cloud",
+  "lang": "Helm/YAML",
+  "commits": [
+   {
+    "sha": "4cbc7de1de",
+    "date": "2021-04-26",
+    "title": "DaemonSet: extensions/v1beta1 -> apps/v1 (#211)",
+    "url": "https://github.com/streamnative/charts/commit/4cbc7de1de898a6b2e94cd92a0be48173e040055"
+   }
+  ]
+ },
+ {
+  "repo": "knative/community",
+  "label": "Knative community",
+  "era": "cloud",
+  "lang": "Markdown",
+  "commits": [
+   {
+    "sha": "fb5e6cc71c",
+    "date": "2021-05-31",
+    "title": "Add xinydev to the members list (#639)",
+    "url": "https://github.com/knative/community/commit/fb5e6cc71c9cf97dedb4407238c150be1c74141a"
+   }
+  ]
+ },
+ {
+  "repo": "cloudevents/sdk-python",
+  "label": "CloudEvents Python SDK",
+  "era": "cloud",
+  "lang": "Python",
+  "commits": [
+   {
+    "sha": "a5fc827513",
+    "date": "2021-06-01",
+    "title": "ignore datacontenttype when using to_binary() (#138)",
+    "url": "https://github.com/cloudevents/sdk-python/commit/a5fc8275136d995cb5c6a9062609ec9fc99b694c"
+   }
+  ]
+ },
+ {
+  "repo": "kubernetes-sigs/cluster-api-provider-aws",
+  "label": "Cluster API Provider AWS",
+  "era": "cloud",
+  "lang": "Go",
+  "commits": [
+   {
+    "sha": "b7e36bf335",
+    "date": "2021-06-24",
+    "title": "update kind version",
+    "url": "https://github.com/kubernetes-sigs/cluster-api-provider-aws/commit/b7e36bf33505fbd136e7690cfcb5ece1fa96d606"
+   }
+  ]
+ },
+ {
+  "repo": "kubernetes/node-problem-detector",
+  "label": "Node Problem Detector",
+  "era": "cloud",
+  "lang": "Markdown",
+  "commits": [
+   {
+    "sha": "62a5f8888e",
+    "date": "2021-07-02",
+    "title": "Update build image guide docs",
+    "url": "https://github.com/kubernetes/node-problem-detector/commit/62a5f8888eb9e195264ba0733d19f71d54be0e76"
+   }
+  ]
+ },
+ {
+  "repo": "kubernetes/community",
+  "label": "Kubernetes community",
+  "era": "cloud",
+  "lang": "Markdown",
+  "commits": [
+   {
+    "sha": "e3a6cd434e",
+    "date": "2021-07-30",
+    "title": "fix owners guide: approver in the reviewers section",
+    "url": "https://github.com/kubernetes/community/commit/e3a6cd434e04449e84c71bc4cc0a3ca486d8501a"
+   },
+   {
+    "sha": "a9ced90603",
+    "date": "2021-07-03",
+    "title": "remove broken analytics links",
+    "url": "https://github.com/kubernetes/community/commit/a9ced90603920b3aaf07bbee8c461b08a27c5703"
+   }
+  ]
+ },
+ {
+  "repo": "kubernetes/dns",
+  "label": "Kubernetes DNS",
+  "era": "cloud",
+  "lang": "Markdown",
+  "commits": [
+   {
+    "sha": "e4181a672a",
+    "date": "2021-07-03",
+    "title": "remove broken link",
+    "url": "https://github.com/kubernetes/dns/commit/e4181a672af7b9df10001ce845acd21a82c16062"
+   }
+  ]
+ },
+ {
+  "repo": "kubernetes/git-sync",
+  "label": "git-sync",
+  "era": "cloud",
+  "lang": "Markdown",
+  "commits": [
+   {
+    "sha": "78a1cffbd3",
+    "date": "2021-07-03",
+    "title": "remove broken analytics links",
+    "url": "https://github.com/kubernetes/git-sync/commit/78a1cffbd3f3f510fda850307c137bb7518578c6"
+   }
+  ]
+ },
+ {
+  "repo": "kubernetes-retired/hierarchical-namespaces",
+  "label": "Hierarchical Namespaces",
+  "era": "cloud",
+  "lang": "Go/Shell",
+  "commits": [
+   {
+    "sha": "5a0811dcdb",
+    "date": "2021-07-06",
+    "title": "pre-submit: return non-zero code when fails",
+    "url": "https://github.com/kubernetes-retired/hierarchical-namespaces/commit/5a0811dcdbf1a8dee53a64073321a64abc4e0949"
+   },
+   {
+    "sha": "eddf342c54",
+    "date": "2021-07-06",
+    "title": "add error message for pre-submit check",
+    "url": "https://github.com/kubernetes-retired/hierarchical-namespaces/commit/eddf342c5450499d4b1675b0267875a8570e38bb"
+   },
+   {
+    "sha": "c4528f8f0e",
+    "date": "2021-07-06",
+    "title": "Delete functions that are no longer used",
+    "url": "https://github.com/kubernetes-retired/hierarchical-namespaces/commit/c4528f8f0e7f346d5dd005a1832432836fe0319a"
+   },
+   {
+    "sha": "3fffe6516c",
+    "date": "2021-07-04",
+    "title": "Add presubmit to ensure make generate doesn't produce diffs",
+    "url": "https://github.com/kubernetes-retired/hierarchical-namespaces/commit/3fffe6516c6ed96ee9ebdffedd9edf3fe88b86fc"
+   }
+  ]
+ },
+ {
+  "repo": "cloudevents/sdk-go",
+  "label": "CloudEvents Go SDK",
+  "era": "cloud",
+  "lang": "Go",
+  "commits": [
+   {
+    "sha": "94b9265099",
+    "date": "2021-07-06",
+    "title": "Finish() no longer used binding-message in Send() (#689)",
+    "url": "https://github.com/cloudevents/sdk-go/commit/94b9265099ef59a1596852807198c6dbd0db9036"
+   }
+  ]
+ },
+ {
+  "repo": "knative-extensions/reconciler-test",
+  "label": "Knative reconciler-test",
+  "era": "cloud",
+  "lang": "Go",
+  "commits": [
+   {
+    "sha": "32f0df0c73",
+    "date": "2021-07-07",
+    "title": "Add DropEventsResponseCode for eventshub (#216)",
+    "url": "https://github.com/knative-extensions/reconciler-test/commit/32f0df0c739988d9be8f51f41f9bb3b03f3615ff"
+   }
+  ]
+ }
+]
